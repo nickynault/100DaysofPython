@@ -7,23 +7,39 @@ import pandas
 BACKGROUND_COLOR = "#B1DDC6"
 data = pandas.read_csv("data/french_words.csv")
 to_learn = data.to_dict(orient="records")
+current_card = {}
 
 
 def random_word():
+    global current_card, flip_timer
+
+    app.after_cancel(flip_timer)
     current_card = random.choice(to_learn)
-    canvas.itemconfig(card_title, text="French")
-    canvas.itemconfig(card_word, text=current_card["French"])
+    canvas.itemconfig(card_title, text="French", fill="black")
+    canvas.itemconfig(card_word, text=current_card["French"], fill="black")
+    canvas.itemconfig(card_background, image=card_front_img)
+    app.after(3000, func=switch_cards)
+
+
+def switch_cards():
+    canvas.itemconfig(card_title, text="English", fill="white")
+    canvas.itemconfig(card_word, text=current_card["English"], fill="white")
+    canvas.itemconfig(card_background, image=card_back_img)
 
 
 app = Tk()
 app.title("Flashcards")
 app.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
 
-canvas = Canvas(width=800, height=526)
-card_front = PhotoImage(file="images/card_front.png")
-canvas.card_front = card_front
+flip_timer = app.after(3000, func=switch_cards)
 
-canvas.create_image(400, 263, image=card_front)
+canvas = Canvas(width=800, height=526)
+card_front_img = PhotoImage(file="images/card_front.png")
+card_back_img = PhotoImage(file="images/card_back.png")
+canvas.card_front = card_front_img
+canvas.card_back = card_back_img
+
+card_background = canvas.create_image(400, 263, image=card_front_img)
 card_title = canvas.create_text(400, 150, text="", font=("Arial", 40, "italic"))
 card_word = canvas.create_text(400, 263, text="", font=("Arial", 60, "bold"))
 
