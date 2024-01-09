@@ -1,13 +1,14 @@
 # Rain Alert App using https://openweathermap.org/current
+# 'etc' used to notate where you must use your own information, and obviously not mine!
 
 import os
 import requests
 from twilio.rest import Client
 
-api_key = "80644bdb613aa91b3398f57173645e1d"  # make your own account and use your own key, else it won't work!
+api_key = "80644bdb613aa9etc"  # make your own account and use your own key, else it won't work!
 OWM_Endpoint = "https://api.openweathermap.org/data/2.5/forecast"
-account_sid = os.environ['ACc51513aad775057c7a05ed0fe742aab2']
-auth_token = os.environ['0d511fd4909ad8e17dede161ae42ce68']
+account_sid = os.environ['ACc51513aad77505etc']
+auth_token = os.environ['0d511fd4909adetc']
 
 weather_params = {
     "lat": 51.507351,
@@ -33,6 +34,6 @@ if will_rain:
     client = Client(account_sid, auth_token)
     message = client.messages \
         .create(body="It's going to rain today. Remember to bring an umbrella!",
-                from_='+18336906525', to='+12489436458')  # use your verified personal number
+                from_='+1833etc', to='+1248etc')  # use your verified personal number
     print(message.status)
 
