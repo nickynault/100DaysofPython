@@ -29,6 +29,9 @@ for destination in sheet_data:
         from_time=tomorrow,
         to_time=six_month_from_today
     )
+
+     if flight is None:
+        continue
     
     if flight.price < destination["lowestPrice"]:
         notification_manager.send_sms(
