@@ -1,6 +1,6 @@
 <!-- Kitten image URL -->
 https://raw.githubusercontent.com/appbrewery/webdev/main/kitten.jpeg
 
+<img src="" />
 
-<!-- Puppy image URL -->
-https://raw.githubusercontent.com/appbrewery/webdev/main/puppy.gif
+add the cat image with a header 
