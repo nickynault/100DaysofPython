@@ -1,0 +1,10 @@
+Nest a list within a list and make sure that you use indentation to clearly show which is which.
+A 
+B
+    1. B1
+    2. B2
+        B2a
+        B2b
+        B2c
+    B3
+C 
