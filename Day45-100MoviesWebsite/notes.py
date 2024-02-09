@@ -1,4 +1,3 @@
-# 100MovieWebsite using Beautiful Soup https://www.crummy.com/software/BeautifulSoup/bs4/doc/
 from bs4 import BeautifulSoup
 
 
