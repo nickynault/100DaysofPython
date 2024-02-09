@@ -1,8 +1,7 @@
 # 100MovieWebsite using Beautiful Soup https://www.crummy.com/software/BeautifulSoup/bs4/doc/
+import requests
 from bs4 import BeautifulSoup
 
+response = requests.get("https://")
 
-with open("website.html", encoding="utf-8") as file:
-    contents = file.read()
-
-soup = BeautifulSoup(contents, 'html.parser')
+soup = BeautifulSoup(input, 'html.parser')
