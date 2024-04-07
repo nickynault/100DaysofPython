@@ -3,6 +3,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import ElementClickInterceptedException
 import time
 
 SIMILAR_ACCOUNT = "INSTAGRAM ACCOUNT YOU WANT TO BECOME"
@@ -69,7 +70,17 @@ class InstaFollower:
             time.sleep(2)
 
     def follow(self):
-        pass
+        # Check and update the (CSS) Selector for the "Follow" buttons as required. 
+        all_buttons = self.driver.find_elements(By.CSS_SELECTOR, value='._aano button')
+
+        for button in all_buttons:
+            try:
+                button.click()
+                time.sleep(1.1)
+            # Clicking button for someone who is already being followed will trigger dialog to Unfollow/Cancel
+            except ElementClickInterceptedException:
+                cancel_button = self.driver.find_element(by=By.XPATH, value="//button[contains(text(), 'Cancel')]")
+                cancel_button.click()
 
 
 bot = InstaFollower()
